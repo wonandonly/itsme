@@ -40,6 +40,7 @@
     </script>
     
     <style>
+        /* 커스텀 테마 폰트 적용 */
         body {
             background-color: #FCFBF7;
             color: #4A3629;
@@ -64,51 +65,29 @@
             animation: wave 1.5s ease-in-out infinite;
             transform-origin: bottom right;
         }
-
-        /* 호버 시 부드러운 스케일 변환 */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(74, 54, 41, 0.08);
-        }
-
-        /* 페이지 전환용 트랜지션 클래스 */
-        .page-transition {
-            transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
-        }
-        .page-hidden {
-            display: none;
-            opacity: 0;
-            transform: translateY(15px);
-        }
-        .page-visible {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body class="selection:bg-banana selection:text-cocoa min-h-screen flex flex-col">
 
-    <!-- [공통] 네비게이션 바 컴포넌트 -->
-    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-cocoa/5 px-6 py-4 transition-all duration-300">
-        <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <a href="#home" class="flex items-center gap-2 group">
+    <!-- [공통] 네비게이션 바 컴포넌트 (모바일에서도 항상 드러나는 홈/경험/방명록) -->
+    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-cocoa/5 px-4 sm:px-6 py-4 transition-all duration-300">
+        <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
+            <!-- 로고 -->
+            <a href="#home" class="flex items-center gap-2 group shrink-0">
                 <div class="w-8 h-8 rounded-full bg-banana flex items-center justify-center font-bold text-cocoa group-hover:rotate-12 transition-transform duration-300">
                     🍌
                 </div>
-                <span class="font-cute text-2xl font-bold tracking-wide text-cocoa">Wonhee.Run</span>
+                <span class="font-cute text-xl sm:text-2xl font-bold tracking-wide text-cocoa">Wonhee.Run</span>
             </a>
             
-            <nav class="hidden md:flex items-center gap-8 font-medium text-cocoa/80 text-sm" id="global-nav">
-                <a href="#home" data-nav="home" class="nav-item hover:text-cocoa transition-colors">나의 가치</a>
-                <a href="#experience" data-nav="experience" class="nav-item hover:text-cocoa transition-colors">경험 조각</a>
-                <a href="#guestbook" data-nav="guestbook" class="nav-item hover:text-cocoa transition-colors">러닝 토크</a>
+            <!-- 네비게이션 링크: 절대 숨겨지지 않고 항상 나열되는 구조 유지 -->
+            <nav class="flex items-center gap-4 sm:gap-8 font-medium text-cocoa/80 text-xs sm:text-sm" id="global-nav">
+                <a href="#home" data-nav="home" class="nav-item hover:text-cocoa transition-colors">홈</a>
+                <a href="#experience" data-nav="experience" class="nav-item hover:text-cocoa transition-colors">경험</a>
+                <a href="#guestbook" data-nav="guestbook" class="nav-item hover:text-cocoa transition-colors">방명록</a>
             </nav>
             
-            <a href="#guestbook" class="px-5 py-2 rounded-full bg-banana text-cocoa font-bold text-sm border-2 border-cocoa shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(74,54,41,1)] transition-all">
+            <a href="#guestbook" class="px-3 py-1.5 sm:px-5 sm:py-2 rounded-full bg-banana text-cocoa font-bold text-[10px] sm:text-sm border-2 border-cocoa shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(74,54,41,1)] transition-all shrink-0">
                 말 걸기 💬
             </a>
         </div>
@@ -117,7 +96,7 @@
     <main class="flex-grow">
         
         <!-- ==================== PAGE 1: 나의 가치 (Home) ==================== -->
-        <div id="page-home" class="page-transition page-visible">
+        <div id="page-home" class="transition-all duration-300 ease-in-out opacity-100 scale-100 block">
             <!-- 히어로 섹션 -->
             <section id="hero" class="relative pt-12 pb-24 md:py-32 px-6 flex flex-col items-center justify-center min-h-[80vh] text-center overflow-hidden">
                 <div class="absolute top-20 left-10 w-32 h-32 bg-banana-light rounded-full filter blur-xl opacity-60 animate-float"></div>
@@ -175,7 +154,7 @@
 
                     <div class="flex flex-col sm:flex-row items-center gap-4 z-10 w-full justify-center">
                         <a href="#experience" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-banana text-cocoa font-bold text-lg border-2 border-cocoa shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
-                            경험 조각 구경가기 👀
+                            경험 구경가기 👀
                         </a>
                         <a href="#guestbook" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-cocoa font-bold text-lg border-2 border-cocoa shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
                             방명록 작성하기 ✏️
@@ -211,15 +190,15 @@
                     </div>
 
                     <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[6px_6px_0px_0px_rgba(74,54,41,1)] relative overflow-hidden min-h-[220px]">
-                        <div id="content-growth" class="value-detail-content transition-opacity duration-300">
+                        <div id="content-growth" class="transition-opacity duration-300">
                             <h4 class="text-2xl font-bold text-cocoa flex items-center gap-2 mb-4">🌱 함께 채워나가는 빈칸의 즐거움</h4>
                             <p class="text-cocoa/85 leading-relaxed text-base">내가 아는 유용한 팁은 적극적으로 공유하고, 팀원이 막힌 부분이 있다면 곁에 앉아 같이 해결책을 고민하는 든든한 페이스메이커를 지향해요.</p>
                         </div>
-                        <div id="content-responsibility" class="value-detail-content hidden transition-opacity duration-300">
+                        <div id="content-responsibility" class="hidden transition-opacity duration-300">
                             <h4 class="text-2xl font-bold text-cocoa flex items-center gap-2 mb-4">🤝 어떤 어려움 속에서도 약속을 완수하기</h4>
                             <p class="text-cocoa/85 leading-relaxed text-base">아무리 코드가 꼬이고 오류가 많이나도, 포기하지 않고 팀원들과 깊이 소통하며 완성품을 만들어 낼 자신이 있습니다.</p>
                         </div>
-                        <div id="content-positivity" class="value-detail-content hidden transition-opacity duration-300">
+                        <div id="content-positivity" class="hidden transition-opacity duration-300">
                             <h4 class="text-2xl font-bold text-cocoa flex items-center gap-2 mb-4">🥳 분위기를 환하게 바꾸는 활력소 리액션</h4>
                             <p class="text-cocoa/85 leading-relaxed text-base">붙임성이 좋고 싹싹한 편이라 어색한 기류를 금방 깨뜨리는 편이에요. 기분 좋게 의견을 던질 수 있는 지지자가 되겠습니다.</p>
                         </div>
@@ -235,21 +214,22 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 card-hover shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between">
+                    <!-- 기존 .card-hover 클래스를 Tailwind의 transition, hover 유틸리티로 완벽 전환 -->
+                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 cubic-bezier(0.175,0.885,0.32,1.275) hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">💪</div>
                             <h4 class="text-xl font-bold text-cocoa mb-3">함께 성장하는 페이스메이커</h4>
                             <p class="text-cocoa/80 text-sm">혼자만 지식을 독점하는 것보다 아는 것을 나누는 생태계를 추구합니다.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 card-hover shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between">
+                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 cubic-bezier(0.175,0.885,0.32,1.275) hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">🎯</div>
                             <h4 class="text-xl font-bold text-cocoa mb-3">책임감 있는 팀플레이어</h4>
                             <p class="text-cocoa/80 text-sm">프로젝트 일정을 잘 지키고 소외되는 팀원이 없도록 살뜰하게 챙깁니다.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 card-hover shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between">
+                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 cubic-bezier(0.175,0.885,0.32,1.275) hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">💡</div>
                             <h4 class="text-xl font-bold text-cocoa mb-3">에너지를 불어넣는 분위기 메이커</h4>
@@ -290,13 +270,13 @@
         </div>
 
         <!-- ==================== PAGE 2: 경험 조각 (Experience) ==================== -->
-        <div id="page-experience" class="page-transition page-hidden">
+        <div id="page-experience" class="transition-all duration-300 ease-in-out opacity-0 scale-95 hidden">
             <section id="experience" class="px-6 w-full py-24">
                 <div class="max-w-4xl mx-auto">
                     <div class="text-center mb-16">
                         <span class="font-cute text-2xl text-cocoa-light font-bold">MY JOURNEY</span>
                         <h3 class="text-3xl md:text-4xl font-bold mt-2">차곡차곡 쌓아온 저의 경험 조각들</h3>
-                        <p class="text-cocoa/70 mt-4 max-w-lg mx-auto">말뿐만이 아닌, 행동과 성과로 증명해 온 성실한 팀 활동 기록지입니다.</p>
+                        <p class="text-cocoa/70 mt-4 max-w-lg mx-auto">말뿐만이 아닌, 행동과 성과로 증명해 온 다정하고 성실한 팀 활동 기록지입니다.</p>
                     </div>
 
                     <!-- 경험 카드 슬라이더 인터랙션 -->
@@ -339,17 +319,17 @@
                                     <div class="md:w-1/3 bg-banana p-8 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-cocoa">
                                         <div>
                                             <span class="px-3 py-1 rounded-full bg-white border border-cocoa text-xs font-bold text-cocoa">협업 & 운영</span>
-                                            <h4 class="text-2xl font-bold text-cocoa mt-4">대학 연합 해커톤<br>기획 및 운영진</h4>
+                                            <h4 class="text-2xl font-bold text-cocoa mt-4">대외 연합 프로젝트<br>기획 및 운영진</h4>
                                         </div>
                                         <span class="text-sm font-semibold text-cocoa-light mt-4">📅 2025</span>
                                     </div>
                                     <div class="md:w-2/3 p-8 flex flex-col justify-between">
                                         <ul class="space-y-4 text-cocoa/85">
                                             <li class="flex items-start gap-2"><span>✔</span> <span>대학 연합 해커톤 운영 및 타임라인 설계 조력.</span></li>
-                                            <li class="flex items-start gap-2"><span>✔</span> <span>전체 기획 및 현장 운영 경험.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>기획 및 현장 운영 스태프로 활동.</span></li>
                                         </ul>
                                         <div class="mt-6 p-4 rounded-xl bg-cream text-xs text-cocoa/70 border border-cocoa/10 font-medium">
-                                            💡 <strong>이 경험에서 배운 것:</strong>예상치 못한 상황은 언제든 발생할 수 있기 때문에, 빠르게 우선순위를 정하고 유연하게 대응하는 자세가 운영의 핵심이라는 것을 배웠습니다.
+                                            💡 <strong>이 경험에서 배운 것:</strong> 예상치 못한 상황은 언제든 발생할 수 있기 때문에, 빠르게 우선순위를 정하고 유연하게 대응하는 자세가 운영의 핵심이라는 것을 배웠습니다.
                                         </div>
                                     </div>
                                 </div>
@@ -383,7 +363,7 @@
                         <div class="flex justify-center gap-3 mt-8">
                             <button onclick="goToExp(0)" id="dot-0" class="w-3 h-3 rounded-full bg-cocoa transition-all duration-300"></button>
                             <button onclick="goToExp(1)" id="dot-1" class="w-3 h-3 rounded-full bg-cocoa/20 transition-all duration-300"></button>
-                            <button onclick="goToExp(2)" id="dot-1" class="w-3 h-3 rounded-full bg-cocoa/20 transition-all duration-300"></button>
+                            <button onclick="goToExp(2)" id="dot-2" class="w-3 h-3 rounded-full bg-cocoa/20 transition-all duration-300"></button>
                         </div>
                     </div>
                 </div>
@@ -391,7 +371,7 @@
         </div>
 
         <!-- ==================== PAGE 3: 러닝 토크 (Guestbook) ==================== -->
-        <div id="page-guestbook" class="page-transition page-hidden">
+        <div id="page-guestbook" class="transition-all duration-300 ease-in-out opacity-0 scale-95 hidden">
             <section id="guestbook" class="py-24 px-6 bg-cream">
                 <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
                     <div class="lg:col-span-5 flex flex-col justify-center">
@@ -471,15 +451,15 @@
             const validPages = ['home', 'experience', 'guestbook'];
             const activePage = validPages.includes(hash) ? hash : 'home';
 
-            // 페이지 섹션 가시성 토글
+            // 페이지 섹션 가시성 및 트랜지션 처리 (전부 Tailwind 클래스로 직접 컨트롤)
             validPages.forEach(page => {
                 const pageEl = document.getElementById(`page-${page}`);
                 if (page === activePage) {
-                    pageEl.classList.remove('page-hidden');
-                    pageEl.classList.add('page-visible');
+                    pageEl.classList.remove('hidden', 'opacity-0', 'scale-95');
+                    pageEl.classList.add('block', 'opacity-100', 'scale-100');
                 } else {
-                    pageEl.classList.remove('page-visible');
-                    pageEl.classList.add('page-hidden');
+                    pageEl.classList.remove('block', 'opacity-100', 'scale-100');
+                    pageEl.classList.add('hidden', 'opacity-0', 'scale-95');
                 }
             });
 
@@ -538,7 +518,7 @@
 
         // --- 4. 경험 슬라이더 컨트롤러 ---
         let currentExpIdx = 0;
-        const totalCards = 2;
+        const totalCards = 3;
 
         function updateSlider() {
             const slider = document.getElementById('experience-slider');
