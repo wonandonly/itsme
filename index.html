@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>러닝메이트 김원희 | 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        // 초기 다크모드 즉시 감지 및 적용 (깜빡임 예방)
+        if (localStorage.getItem('darkMode') === 'enabled' || 
+            (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        tailwind.config = {
+            darkMode: 'class', // 클래스 기반 다크모드 활성화
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            DEFAULT: '#FCFBF7',
+                            card: '#F6F4EB',
+                            dark: '#EDEAE0',
+                        },
+                        banana: {
+                            light: '#FFF9E0',
+                            DEFAULT: '#FFE894',
+                            dark: '#F5D362',
+                        },
+                        cocoa: {
+                            light: '#735F50',
+                            DEFAULT: '#4A3629',
+                            dark: '#2E1F15',
+                        },
+                        darkBg: {
+                            DEFAULT: '#1D1611', // 아주 깊은 딥 코코아 블랙
+                            card: '#281F19',
+                            darker: '#130E0A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        cute: ['Gaegu', 'cursive'],
+                        english: ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 트랜지션 효과 공통 적용 */
+        body {
+            background-color: #FCFBF7;
+            color: #4A3629;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        .animate-wave {
+            animation: wave 1.5s ease-in-out infinite;
+            transform-origin: bottom right;
+        }
+
+        /* 데스크톱 마우스 커서 전용 스타일 */
+        @media (min-width: 768px) {
+            html, body {
+                cursor: none; /* 시스템 마우스 제거 */
+            }
+            a, button, select, input, textarea {
+                cursor: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark:bg-darkBg dark:text-cream selection:bg-banana selection:text-cocoa min-h-screen flex flex-col">
+
+    <!-- 1. 스크롤 진행률 상단 바 -->
+    <div class="fixed top-0 left-0 h-1.5 bg-banana-dark dark:bg-banana z-[9999] w-0 transition-all duration-75" id="scroll-progress"></div>
+
+    <!-- 2. 커스텀 마우스 커서 (데스크톱 데코레이션: 진짜 디테일한 수제 도넛 디자인) -->
+    <div id="custom-cursor" class="hidden md:block fixed top-0 left-0 pointer-events-none z-[9999] transition-transform duration-100 ease-out">
+        <svg id="donut-svg" viewBox="0 0 100 100" class="w-11 h-11 transition-all duration-500 cubic-bezier(0.175,0.885,0.32,1.275) origin-center select-none filter drop-shadow-[0_4px_6px_rgba(74,54,41,0.2)]">
+            <defs>
+                <!-- 도넛 가운데 구멍을 내기 위한 마스크 정의 -->
+                <mask id="donut-hole">
+                    <rect width="100" height="100" fill="white" />
+                    <circle cx="50" cy="50" r="16" fill="black" />
+                </mask>
+            </defs>
+            <!-- 도넛 빵 & 아이싱 묶음 (가운데 구멍 마스크 적용) -->
+            <g mask="url(#donut-hole)">
+                <!-- 구운 도넛 빵 베이스 (노릇노릇한 황토색) -->
+                <circle cx="50" cy="50" r="43" fill="#E5A65D" stroke="#4A3629" stroke-width="5" />
+                <!-- 흘러내리는 달콤한 딸기 초코 아이싱 (웨이브 핑크) -->
+                <path d="M 50 10 
+                         C 59 10, 63 16, 69 14 
+                         C 75 12, 79 20, 83 24 
+                         C 87 28, 85 36, 87 42 
+                         C 89 48, 85 54, 83 60 
+                         C 81 66, 75 68, 69 74 
+                         C 63 80, 55 76, 51 80 
+                         C 47 84, 39 80, 33 80 
+                         C 27 80, 23 72, 19 66 
+                         C 15 60, 17 52, 15 48 
+                         C 13 44, 19 36, 19 30 
+                         C 19 24, 27 20, 33 16 
+                         C 39 12, 43 10, 50 10 Z" fill="#FF70A6" stroke="#4A3629" stroke-width="4" />
+                <!-- 쁘띠 스프링클 토핑 데코레이션 -->
+                <!-- 레몬맛 노랑 스프링클 -->
+                <rect x="28" y="24" width="11" height="4.5" rx="2" transform="rotate(15 28 24)" fill="#FFD166" stroke="#4A3629" stroke-width="1.2" />
+                <!-- 민트맛 블루 스프링클 -->
+                <rect x="62" y="26" width="11" height="4.5" rx="2" transform="rotate(-30 62 26)" fill="#4CC9F0" stroke="#4A3629" stroke-width="1.2" />
+                <!-- 화이트 슈가 스프링클 -->
+                <rect x="68" y="52" width="11" height="4.5" rx="2" transform="rotate(45 68 52)" fill="#FFFFFF" stroke="#4A3629" stroke-width="1.2" />
+                <!-- 멜론맛 그린 스프링클 -->
+                <rect x="31" y="61" width="11" height="4.5" rx="2" transform="rotate(-60 31 61)" fill="#06D6A0" stroke="#4A3629" stroke-width="1.2" />
+            </g>
+            <!-- 도넛 중앙 안쪽 테두리 선 -->
+            <circle cx="50" cy="50" r="18" fill="none" stroke="#4A3629" stroke-width="4" />
+        </svg>
+    </div>
+    <!-- 도넛 뒤를 졸졸 쫓아다니는 쫀득한 별 슈가 크럼블 -->
+    <div id="custom-cursor-dot" class="hidden md:block fixed top-0 left-0 text-base pointer-events-none z-[9999] transition-transform duration-300 ease-out select-none">✨</div>
+
+    <!-- 3. 은은한 파티클 배경 캔버스 -->
+    <canvas id="particle-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-80"></canvas>
+
+    <!-- [공통] 네비게이션 바 컴포넌트 -->
+    <header class="sticky top-0 z-50 bg-cream/90 dark:bg-darkBg/90 backdrop-blur-md border-b border-cocoa/5 dark:border-white/5 px-4 sm:px-6 py-4 transition-all duration-300">
+        <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
+            <a href="#home" class="flex items-center gap-2 group shrink-0">
+                <div class="w-8 h-8 rounded-full bg-banana flex items-center justify-center font-bold text-cocoa group-hover:rotate-12 transition-transform duration-300">
+                    🍌
+                </div>
+                <span class="font-cute text-xl sm:text-2xl font-bold tracking-wide text-cocoa">Wonhee.Run</span>
+            </a>
+            
+            <nav class="flex items-center gap-4 sm:gap-8 font-medium text-cocoa/80 dark:text-cream/80 text-xs sm:text-sm" id="global-nav">
+                <a href="#home" data-nav="home" class="nav-item hover:text-cocoa dark:hover:text-cream transition-colors">홈</a>
+                <a href="#experience" data-nav="experience" class="nav-item hover:text-cocoa dark:hover:text-cream transition-colors">경험</a>
+                <a href="#chemistry" data-nav="chemistry" class="nav-item hover:text-cocoa dark:hover:text-cream transition-colors">케미 테스트</a>
+            </nav>
+            
+            <div class="flex items-center gap-3 shrink-0">
+                <!-- 🌓 다크모드 토글 버튼 -->
+                <button onclick="toggleDarkMode()" id="dark-mode-toggle" class="p-2 rounded-full border-2 border-cocoa dark:border-banana bg-white dark:bg-darkBg-card shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] dark:shadow-[2px_2px_0px_0px_rgba(245,211,98,1)] hover:translate-x-[0.5px] hover:translate-y-[0.5px] hover:shadow-[1px_1px_0px_0px_rgba(74,54,41,1)] dark:hover:shadow-[1px_1px_0px_0px_rgba(245,211,98,1)] transition-all text-sm">
+                    🌙
+                </button>
+                <a href="#chemistry" class="px-3 py-1.5 sm:px-5 sm:py-2 rounded-full bg-banana text-cocoa font-bold text-[10px] sm:text-sm border-2 border-cocoa shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(74,54,41,1)] transition-all shrink-0">
+                    테스트 하기 🧪
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- ==================== PAGE 1: 나의 가치 (Home) ==================== -->
+        <div id="page-home" class="transition-all duration-300 ease-in-out opacity-100 scale-100 block">
+            <!-- 히어로 섹션 -->
+            <section id="hero" class="relative pt-12 pb-24 md:py-32 px-6 flex flex-col items-center justify-center min-h-[80vh] text-center overflow-hidden">
+                <div class="absolute top-20 left-10 w-32 h-32 bg-banana-light dark:bg-banana/10 rounded-full filter blur-xl opacity-60 animate-float"></div>
+                <div class="absolute bottom-20 right-10 w-44 h-44 bg-banana dark:bg-banana-dark/10 rounded-full filter blur-2xl opacity-40 animate-float" style="animation-delay: 1.5s;"></div>
+                
+                <div class="max-w-3xl mx-auto z-10 flex flex-col items-center">
+                    <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-banana-light dark:bg-banana-dark/20 border border-banana text-cocoa-light dark:text-banana font-bold text-xs md:text-sm mb-6 shadow-sm">
+                        <span>👋 반가워요! 자바반 여러분</span>
+                        <span class="inline-block animate-wave text-base">✨</span>
+                    </div>
+
+                    <h2 class="text-cocoa-light dark:text-cream/75 font-cute text-3xl md:text-4xl font-bold mb-4">언제든 편하게 다가갈 수 있는</h2>
+                    <h1 class="text-cocoa dark:text-white font-bold text-4xl md:text-6xl leading-[1.2] md:leading-[1.25] tracking-tight mb-8">
+                        러닝메이트, <span class="relative inline-block px-2">
+                            김원희
+                            <span class="absolute left-0 bottom-1 md:bottom-2 w-full h-3 md:h-5 bg-banana/80 dark:bg-banana/35 -z-10 rounded-full transform -rotate-1"></span>
+                        </span>입니다!
+                    </h1>
+
+                    <p class="text-cocoa/80 dark:text-cream/80 text-base md:text-lg max-w-xl leading-relaxed mb-10">
+                        새로운 배움을 향해 출발하는 자바반에서, 함께 웃고 의지하며 끝까지 완주할 페이스메이커가 되어 드릴게요.🏃‍♂️💨
+                    </p>
+
+                    <!-- 아바타 그래픽 -->
+                    <div class="relative w-48 h-48 md:w-56 md:h-56 mb-12">
+                        <div class="absolute inset-0 bg-banana rounded-3xl rotate-6 border-2 border-cocoa shadow-md"></div>
+                        <div class="absolute inset-0 bg-cream dark:bg-darkBg-card border-2 border-cocoa dark:border-banana rounded-3xl flex flex-col items-center justify-end overflow-hidden shadow-inner">
+                            <svg viewBox="0 0 120 120" class="w-full h-full text-cocoa dark:text-cream">
+                                <circle cx="60" cy="55" r="42" fill="#FFE894" />
+                                <path d="M22,50 C18,20 102,20 98,50 C96,35 24,35 22,50 Z" fill="#4A3629" />
+                                <circle cx="23" cy="62" r="7" fill="#F8D3B6" stroke="#4A3629" stroke-width="2"/>
+                                <circle cx="97" cy="62" r="7" fill="#F8D3B6" stroke="#4A3629" stroke-width="2"/>
+                                <path d="M26,60 C26,85 94,85 94,60 C94,45 26,45 26,60 Z" fill="#FCE5D3" stroke="#4A3629" stroke-width="2"/>
+                                <path d="M26,48 C35,40 50,48 60,42 C70,48 85,40 94,48 C85,38 35,38 26,48 Z" fill="#4A3629" />
+                                <path d="M38,58 Q44,52 50,58" fill="none" stroke="#4A3629" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M70,58 Q76,52 82,58" fill="none" stroke="#4A3629" stroke-width="3" stroke-linecap="round"/>
+                                <ellipse cx="34" cy="65" rx="6" ry="4" fill="#FFAAA6" opacity="0.8"/>
+                                <ellipse cx="86" cy="65" rx="6" ry="4" fill="#FFAAA6" opacity="0.8"/>
+                                <path d="M50,68 Q60,78 70,68" fill="none" stroke="#4A3629" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M30,85 L90,85 C90,110 30,110 30,85 Z" fill="#FFE894" stroke="#4A3629" stroke-width="2"/>
+                                <circle cx="60" cy="98" r="5" fill="#4A3629" />
+                                <path d="M58,98 L62,98 M60,96 L60,100" stroke="#FFE894" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        <div class="absolute -top-4 -left-4 w-12 h-12 bg-white dark:bg-darkBg rounded-full flex items-center justify-center border-2 border-cocoa dark:border-banana shadow-md animate-float" style="animation-delay: 0.2s;">
+                            <span class="text-xl">🏃‍♂️</span>
+                        </div>
+                        <div class="absolute top-10 -right-6 w-12 h-12 bg-white dark:bg-darkBg rounded-full flex items-center justify-center border-2 border-cocoa dark:border-banana shadow-md animate-float" style="animation-delay: 0.8s;">
+                            <span class="text-xl">☕</span>
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-white dark:bg-darkBg rounded-full flex items-center justify-center border-2 border-cocoa dark:border-banana shadow-md animate-float" style="animation-delay: 1.4s;">
+                            <span class="text-xl">💻</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-4 z-10 w-full justify-center">
+                        <a href="#experience" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-banana text-cocoa font-bold text-lg border-2 border-cocoa dark:border-banana shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(245,211,98,1)] transition-all">
+                            경험 구경가기 👀
+                        </a>
+                        <a href="#chemistry" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-darkBg-card text-cocoa dark:text-cream font-bold text-lg border-2 border-cocoa dark:border-banana shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] dark:hover:shadow-[2px_2px_0px_0px_rgba(245,211,98,1)] transition-all">
+                            러닝메이트 케미 테스트 🧪
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 핵심 가치 섹션 -->
+            <section id="about" class="py-24 px-6 bg-cream-card/50 dark:bg-darkBg-card/40 border-y border-cocoa/5 dark:border-white/5">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="font-cute text-2xl text-cocoa-light dark:text-banana font-bold">MY CORE VALUE</span>
+                        <h3 class="text-3xl md:text-4xl font-bold mt-2">나를 가리키는 3가지 나침반</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <button onclick="selectValue('growth')" id="btn-growth" class="p-6 rounded-3xl bg-banana text-cocoa border-2 border-cocoa dark:border-banana text-left shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] transition-all duration-300">
+                            <div class="text-4xl mb-4">🌱</div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-cocoa/60 dark:text-cocoa/80 font-english">Value 01</div>
+                            <div class="text-2xl font-bold mt-1">#성장</div>
+                        </button>
+                        <button onclick="selectValue('responsibility')" id="btn-responsibility" class="p-6 rounded-3xl bg-white dark:bg-darkBg-card text-cocoa dark:text-cream border-2 border-cocoa dark:border-banana text-left shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] hover:bg-banana/10 transition-all duration-300">
+                            <div class="text-4xl mb-4">🤝</div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-cocoa/60 dark:text-cream/50 font-english">Value 02</div>
+                            <div class="text-2xl font-bold mt-1">#책임감</div>
+                        </button>
+                        <button onclick="selectValue('positivity')" id="btn-positivity" class="p-6 rounded-3xl bg-white dark:bg-darkBg-card text-cocoa dark:text-cream border-2 border-cocoa dark:border-banana text-left shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] hover:bg-banana/10 transition-all duration-300">
+                            <div class="text-4xl mb-4">🥳</div>
+                            <div class="text-xs font-bold uppercase tracking-wider text-cocoa/60 dark:text-cream/50 font-english">Value 03</div>
+                            <div class="text-2xl font-bold mt-1">#긍정</div>
+                        </button>
+                    </div>
+
+                    <div class="bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana p-8 shadow-[6px_6px_0px_0px_rgba(74,54,41,1)] dark:shadow-[6px_6px_0px_0px_rgba(245,211,98,1)] relative overflow-hidden min-h-[220px]">
+                        <div id="content-growth" class="transition-opacity duration-300">
+                            <h4 class="text-2xl font-bold text-cocoa dark:text-banana flex items-center gap-2 mb-4">🌱 함께 채워나가는 빈칸의 즐거움</h4>
+                            <p class="text-cocoa/85 dark:text-cream/80 leading-relaxed text-base">내가 아는 유용한 팁은 적극적으로 공유하고, 팀원이 막힌 부분이 있다면 곁에 앉아 같이 해결책을 고민하는 든든한 페이스메이커를 지향해요.</p>
+                        </div>
+                        <div id="content-responsibility" class="hidden transition-opacity duration-300">
+                            <h4 class="text-2xl font-bold text-cocoa dark:text-banana flex items-center gap-2 mb-4">🤝 어떤 어려움 속에서도 약속을 완수하기</h4>
+                            <p class="text-cocoa/85 dark:text-cream/80 leading-relaxed text-base">아무리 코드가 꼬이고 오류가 많이나도, 포기하지 않고 팀원들과 깊이 소통하며 완성품을 만들어 낼 자신이 있습니다.</p>
+                        </div>
+                        <div id="content-positivity" class="hidden transition-opacity duration-300">
+                            <h4 class="text-2xl font-bold text-cocoa dark:text-banana flex items-center gap-2 mb-4">🥳 분위기를 환하게 바꾸는 활력소 리액션</h4>
+                            <p class="text-cocoa/85 dark:text-cream/80 leading-relaxed text-base">붙임성이 좋고 싹싹한 편이라 어색한 기류를 금방 깨뜨리는 편이에요. 기분 좋게 의견을 던질 수 있는 지지자가 되겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 매력 섹션 -->
+            <section id="strengths" class="py-24 px-6 max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="font-cute text-2xl text-cocoa-light dark:text-banana font-bold">STRENGTHS</span>
+                    <h3 class="text-3xl md:text-4xl font-bold mt-2">자신 있게 자랑하는 매력 포인트 3</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-darkBg-card rounded-3xl border-2 border-cocoa dark:border-banana p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">💪</div>
+                            <h4 class="text-xl font-bold text-cocoa dark:text-banana mb-3">함께 성장하는 페이스메이커</h4>
+                            <p class="text-cocoa/80 dark:text-cream/80 text-sm">혼자만 지식을 독점하는 것보다 아는 것을 나누는 생태계를 추구합니다.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-darkBg-card rounded-3xl border-2 border-cocoa dark:border-banana p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">🎯</div>
+                            <h4 class="text-xl font-bold text-cocoa dark:text-banana mb-3">책임감 있는 팀플레이어</h4>
+                            <p class="text-cocoa/80 dark:text-cream/80 text-sm">프로젝트 일정을 잘 지키고 소외되는 팀원이 없도록 살뜰하게 챙깁니다.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-darkBg-card rounded-3xl border-2 border-cocoa dark:border-banana p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">💡</div>
+                            <h4 class="text-xl font-bold text-cocoa dark:text-banana mb-3">에너지를 불어넣는 분위기 메이커</h4>
+                            <p class="text-cocoa/80 dark:text-cream/80 text-sm">넘치는 센스와 싹싹하고 맑은 성격으로, 어색한 팀플 첫날 분위기를 녹입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 리액션 보드 -->
+            <section class="py-16 px-6 max-w-4xl mx-auto text-center">
+                <div class="bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana rounded-3xl p-8 md:p-12 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)]">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3">💬 원희에게 기분 좋은 리액션 날려주기</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+                        <button onclick="sendReaction('fighting')" class="p-4 rounded-2xl bg-cream-card dark:bg-darkBg hover:bg-banana text-cocoa dark:text-cream border-2 border-cocoa dark:border-banana flex flex-col items-center gap-2 transform active:scale-95 transition-all">
+                            <span class="text-3xl">🔥</span>
+                            <span class="text-xs font-bold">화이팅!</span>
+                            <span id="react-fighting-count" class="font-english font-black text-sm text-cocoa-light dark:text-banana">42</span>
+                        </button>
+                        <button onclick="sendReaction('coffee')" class="p-4 rounded-2xl bg-cream-card dark:bg-darkBg hover:bg-banana text-cocoa dark:text-cream border-2 border-cocoa dark:border-banana flex flex-col items-center gap-2 transform active:scale-95 transition-all">
+                            <span class="text-3xl">☕</span>
+                            <span class="text-xs font-bold">커피 수혈해요</span>
+                            <span id="react-coffee-count" class="font-english font-black text-sm text-cocoa-light dark:text-banana">28</span>
+                        </button>
+                        <button onclick="sendReaction('collab')" class="p-4 rounded-2xl bg-cream-card dark:bg-darkBg hover:bg-banana text-cocoa dark:text-cream border-2 border-cocoa dark:border-banana flex flex-col items-center gap-2 transform active:scale-95 transition-all">
+                            <span class="text-3xl">🤝</span>
+                            <span class="text-xs font-bold">같이 팀플해요!</span>
+                            <span id="react-collab-count" class="font-english font-black text-sm text-cocoa-light dark:text-banana">19</span>
+                        </button>
+                        <button onclick="sendReaction('fun')" class="p-4 rounded-2xl bg-cream-card dark:bg-darkBg hover:bg-banana text-cocoa dark:text-cream border-2 border-cocoa dark:border-banana flex flex-col items-center gap-2 transform active:scale-95 transition-all">
+                            <span class="text-3xl">💡</span>
+                            <span class="text-xs font-bold">좋아요</span>
+                            <span id="react-fun-count" class="font-english font-black text-sm text-cocoa-light dark:text-banana">51</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== PAGE 2: 경험 조각 (Experience) ==================== -->
+        <div id="page-experience" class="transition-all duration-300 ease-in-out opacity-0 scale-95 hidden">
+            <section id="experience" class="px-6 w-full py-24">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="font-cute text-2xl text-cocoa-light dark:text-banana font-bold">MY JOURNEY</span>
+                        <h3 class="text-3xl md:text-4xl font-bold mt-2">차곡차곡 쌓아온 저의 경험 조각들</h3>
+                        <p class="text-cocoa/70 dark:text-cream/70 mt-4 max-w-lg mx-auto">말뿐만이 아닌, 행동과 성과로 증명해 온 다정하고 성실한 팀 활동 기록지입니다.</p>
+                    </div>
+
+                    <!-- 경험 카드 슬라이더 인터랙션 -->
+                    <div class="relative">
+                        <div class="hidden md:flex justify-between items-center absolute top-1/2 -translate-y-1/2 w-full -px-12 pointer-events-none z-10">
+                            <button onclick="prevExp()" class="w-12 h-12 rounded-full bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana flex items-center justify-center hover:bg-banana shadow-md pointer-events-auto transition-all">
+                                ◀
+                            </button>
+                            <button onclick="nextExp()" class="w-12 h-12 rounded-full bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana flex items-center justify-center hover:bg-banana shadow-md pointer-events-auto transition-all">
+                                ▶
+                            </button>
+                        </div>
+
+                        <div class="overflow-hidden px-2 py-4">
+                            <div id="experience-slider" class="flex transition-transform duration-500 ease-out gap-6" style="transform: translateX(0px);">
+                                
+                                <!-- 카드 1 -->
+                                <div class="w-full shrink-0 flex flex-col md:flex-row bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana rounded-3xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)]">
+                                    <div class="md:w-1/3 bg-banana p-8 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-cocoa dark:border-banana">
+                                        <div>
+                                            <span class="px-3 py-1 rounded-full bg-white dark:bg-darkBg border border-cocoa dark:border-banana text-xs font-bold text-cocoa dark:text-cream">리더십 & 기획</span>
+                                            <h4 class="text-2xl font-bold text-cocoa dark:text-darkBg-darker mt-4">대학 동아리<br>부회장 활동</h4>
+                                        </div>
+                                        <span class="text-sm font-semibold text-cocoa-light mt-4">📅 2024 - 2025</span>
+                                    </div>
+                                    <div class="md:w-2/3 p-8 flex flex-col justify-between">
+                                        <ul class="space-y-4 text-cocoa/85 dark:text-cream/85">
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>40명 규모의 학술 동아리를 운영하며 커리큘럼 설계 및 기획.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>새로운 팀원들이 잘 동화될 수 있도록 '밥약 프로그램' 제안 및 활성화.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>아이스브레이킹 게임들을 다수 설계해 즐거운 소통 분위기 조성.</span></li>
+                                        </ul>
+                                        <div class="mt-6 p-4 rounded-xl bg-cream dark:bg-darkBg text-xs text-cocoa/70 dark:text-cream/75 border border-cocoa/10 font-medium">
+                                            💡 <strong>이 경험에서 배운 것:</strong> 구성원 하나하나의 이야기를 경청하고, 그들이 힘을 발휘할 수 있는 무대를 만드는 방법을 배웠어요!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 카드 2 -->
+                                <div class="w-full shrink-0 flex flex-col md:flex-row bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana rounded-3xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)]">
+                                    <div class="md:w-1/3 bg-banana p-8 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-cocoa dark:border-banana">
+                                        <div>
+                                            <span class="px-3 py-1 rounded-full bg-white dark:bg-darkBg border border-cocoa dark:border-banana text-xs font-bold text-cocoa dark:text-cream">협업 & 운영</span>
+                                            <h4 class="text-2xl font-bold text-cocoa dark:text-darkBg-darker mt-4">대외 연합 프로젝트<br>기획 및 운영진</h4>
+                                        </div>
+                                        <span class="text-sm font-semibold text-cocoa-light mt-4">📅 2025</span>
+                                    </div>
+                                    <div class="md:w-2/3 p-8 flex flex-col justify-between">
+                                        <ul class="space-y-4 text-cocoa/85 dark:text-cream/85">
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>대학 연합 해커톤 운영 및 타임라인 설계 조력.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>의견 조율 단계에서 최적의 중간 지점 조율안 제시.</span></li>
+                                        </ul>
+                                        <div class="mt-6 p-4 rounded-xl bg-cream dark:bg-darkBg text-xs text-cocoa/70 dark:text-cream/75 border border-cocoa/10 font-medium">
+                                            💡 <strong>이 경험에서 배운 것:</strong> 리스크는 미룰수록 커진다는 점! 팀원 간의 투명한 소통과 명확한 일정 관리가 팀워크를 살리는 비결임을 깨달았습니다.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 카드 3 -->
+                                <div class="w-full shrink-0 flex flex-col md:flex-row bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana rounded-3xl overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] dark:shadow-[4px_4px_0px_0px_rgba(245,211,98,1)]">
+                                    <div class="md:w-1/3 bg-banana p-8 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2 border-cocoa dark:border-banana">
+                                        <div>
+                                            <span class="px-3 py-1 rounded-full bg-white dark:bg-darkBg border border-cocoa dark:border-banana text-xs font-bold text-cocoa dark:text-cream">프로젝트 & 수상</span>
+                                            <h4 class="text-2xl font-bold text-cocoa dark:text-darkBg-darker mt-4">디지털 소외 계층을 위한<br>앱 개발 프로젝트</h4>
+                                        </div>
+                                        <span class="text-sm font-semibold text-cocoa-light mt-4">📅 2025</span>
+                                    </div>
+                                    <div class="md:w-2/3 p-8 flex flex-col justify-between">
+                                        <ul class="space-y-4 text-cocoa/85 dark:text-cream/85">
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>팀 프로젝트에서 기획 및 개발을 담당.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>사용자 경험을 고려한 기능 설계와 구현을 함께 진행.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>프로젝트의 완성도를 인정받아 <strong>수상</strong>이라는 성과를 달성.</span></li>
+                                        </ul>
+                                        <div class="mt-6 p-4 rounded-xl bg-cream dark:bg-darkBg text-xs text-cocoa/70 dark:text-cream/75 border border-cocoa/10 font-medium">
+                                            💡 <strong>이 경험에서 배운 것:</strong> 좋은 결과는 뛰어난 아이디어 하나보다, 팀원들과 끝까지 개선하고 완성도를 높이려는 과정에서 만들어진다는 것을 배웠습니다.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 슬라이더 도트 및 인디케이터 -->
+                        <div class="flex justify-center gap-3 mt-8">
+                            <button onclick="goToExp(0)" id="dot-0" class="w-3 h-3 rounded-full bg-cocoa transition-all duration-300"></button>
+                            <button onclick="goToExp(1)" id="dot-1" class="w-3 h-3 rounded-full bg-cocoa/20 transition-all duration-300"></button>
+                            <button onclick="goToExp(2)" id="dot-2" class="w-3 h-3 rounded-full bg-cocoa/20 transition-all duration-300"></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== PAGE 3: 케미 테스트 (Chemistry Test) ==================== -->
+        <div id="page-chemistry" class="transition-all duration-300 ease-in-out opacity-0 scale-95 hidden">
+            <section id="chemistry" class="py-24 px-6 bg-cream dark:bg-darkBg flex items-center justify-center min-h-[80vh]">
+                <div class="max-w-2xl w-full mx-auto bg-white dark:bg-darkBg-card border-2 border-cocoa dark:border-banana rounded-3xl p-8 md:p-12 shadow-[6px_6px_0px_0px_rgba(74,54,41,1)] dark:shadow-[6px_6px_0px_0px_rgba(245,211,98,1)] text-center relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-banana/30 rounded-full"></div>
+                    
+                    <!-- [1] 시작 화면 -->
+                    <div id="quiz-intro" class="block space-y-6">
+                        <span class="text-5xl">🧪</span>
+                        <h3 class="font-cute text-2xl font-bold text-cocoa-light dark:text-banana">나와 원희의 러닝메이트 등급은?</h3>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-cocoa dark:text-white leading-tight">코드 취향 & 협업 케미 테스트</h2>
+                        <p class="text-cocoa/80 dark:text-cream/80 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+                            재미로 알아보는 성향 대조 표! 몇 가지만 선택하면 나와 원희님의 페이스메이커 싱크로율을 진단해 드려요. 🏃‍♂️💨
+                        </p>
+                        <button onclick="startQuiz()" class="px-8 py-4 rounded-2xl bg-banana text-cocoa font-bold text-lg border-2 border-cocoa shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
+                            테스트 시작하기 🚀
+                        </button>
+                    </div>
+
+                    <!-- [2] 문제 풀이 화면 -->
+                    <div id="quiz-question-container" class="hidden space-y-8">
+                        <!-- 진행률 바 -->
+                        <div class="w-full bg-cream dark:bg-darkBg border border-cocoa/20 h-3 rounded-full overflow-hidden">
+                            <div id="quiz-progress" class="bg-banana h-full transition-all duration-300" style="width: 33%"></div>
+                        </div>
+                        <span id="quiz-step" class="inline-block px-3 py-1 bg-banana-light dark:bg-banana-dark/30 border border-banana rounded-full text-xs font-bold text-cocoa-light dark:text-banana font-english">QUESTION 1/3</span>
+                        
+                        <h3 id="quiz-title" class="text-2xl font-bold text-cocoa dark:text-white leading-snug">코딩 중 에러가 안 풀릴 때, 나의 행동은?</h3>
+                        
+                        <div class="space-y-4 pt-4">
+                            <button id="btn-choice-a" onclick="submitAnswer('A')" class="w-full p-5 rounded-2xl bg-cream-card dark:bg-darkBg hover:bg-banana text-cocoa dark:text-cream font-bold text-left border-2 border-cocoa dark:border-banana shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] dark:shadow-[3px_3px_0px_0px_rgba(245,211,98,1)] transition-all">
+                                💻 에러와 1대1 단독 대결! 혼자 밤새며 해결한다.
+                            </button>
+                            <button id="btn-choice-b" onclick="submitAnswer('B')" class="w-full p-5 rounded-2xl bg-cream-card dark:bg-darkBg hover:bg-banana text-cocoa dark:text-cream font-bold text-left border-2 border-cocoa dark:border-banana shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] dark:shadow-[3px_3px_0px_0px_rgba(245,211,98,1)] transition-all">
+                                ☕ 일단 옆 동료에게 힌트를 얻거나 함께 고민해 본다.
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- [3] 결과 화면 -->
+                    <div id="quiz-result" class="hidden space-y-6">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-banana-light dark:bg-banana/10 border-2 border-cocoa dark:border-banana flex items-center justify-center text-4xl animate-bounce" id="result-emoji">
+                            🤝
+                        </div>
+                        <h4 id="result-tag" class="font-cute text-2xl font-bold text-cocoa-light dark:text-banana">찰떡궁합 100%</h4>
+                        <h2 id="result-title" class="text-3xl font-extrabold text-cocoa dark:text-white leading-snug">우리는 자바반 찰떡 페이스메이커!</h2>
+                        <p id="result-desc" class="text-cocoa/85 dark:text-cream/80 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+                            성향이 아주 딱 맞네요! 함께 공부하면 코딩 에너지가 배가 될 거예요. 코드 막힐 때 망설임 없이 물어보세요!
+                        </p>
+                        
+                        <div class="pt-6 border-t border-cocoa/10 flex flex-col gap-3">
+                            <p class="text-xs text-cocoa/50 font-medium">이 결과를 내일 원희님에게 슬쩍 스포해 주세요 🤫</p>
+                            <div class="flex justify-center gap-4">
+                                <button onclick="resetQuiz()" class="px-5 py-2.5 rounded-xl bg-white dark:bg-darkBg border border-cocoa dark:border-banana text-xs font-bold shadow-sm hover:bg-cream-card text-cocoa dark:text-cream">
+                                    다시 하기 🔄
+                                </button>
+                                <a href="#home" class="px-5 py-2.5 rounded-xl bg-banana border-2 border-cocoa text-xs font-bold shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-y-0.5 text-cocoa">
+                                    홈으로 가기 🏠
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- [공통] 푸터 -->
+    <footer class="bg-cocoa text-cream py-12 px-6 border-t border-cocoa-dark mt-auto">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-banana flex items-center justify-center font-bold text-cocoa">🍌</div>
+                <span class="font-cute text-2xl font-bold">Wonhee.Run</span>
+            </div>
+            <p class="text-cream/50 text-xs font-english">© 2026 Runner Kim Wonhee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 토스트 알림창 -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-cocoa text-white px-6 py-3 rounded-xl border border-white/10 shadow-xl opacity-0 transform translate-y-4 pointer-events-none transition-all duration-300 flex items-center gap-2">
+        <span id="toast-icon">✨</span>
+        <span id="toast-message" class="text-sm font-semibold">알림 메시지</span>
+    </div>
+
+    <script>
+        // --- 1. 해시 라우터 탑재 (하나의 네브바로 페이지 제어) ---
+        function handleRouting() {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            const validPages = ['home', 'experience', 'chemistry'];
+            const activePage = validPages.includes(hash) ? hash : 'home';
+
+            // 페이지 섹션 가시성 및 트랜지션 처리
+            validPages.forEach(page => {
+                const pageEl = document.getElementById(`page-${page}`);
+                if (page === activePage) {
+                    pageEl.classList.remove('hidden', 'opacity-0', 'scale-95');
+                    pageEl.classList.add('block', 'opacity-100', 'scale-100');
+                } else {
+                    pageEl.classList.remove('block', 'opacity-100', 'scale-100');
+                    pageEl.classList.add('hidden', 'opacity-0', 'scale-95');
+                }
+            });
+
+            // 네비게이션 액티브 메뉴 하이라이트 스타일 제어
+            document.querySelectorAll('#global-nav a').forEach(link => {
+                const href = link.getAttribute('href').replace('#', '');
+                if (href === activePage) {
+                    link.className = "nav-item text-cocoa dark:text-banana font-bold underline underline-offset-4 decoration-banana decoration-4 transition-all";
+                } else {
+                    link.className = "nav-item text-cocoa/80 dark:text-cream/80 hover:text-cocoa dark:hover:text-cream transition-colors";
+                }
+            });
+
+            // 화면을 최상단으로 복귀
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+
+        // --- 2. 오디오 피드백 (Web Audio API 기반 귀여운 팝 사운드) ---
+        function playPopSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(200, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(700, ctx.currentTime + 0.12);
+                gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.12);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.12);
+            } catch (e) {}
+        }
+
+        // --- 3. 다크모드 / 라이트모드 제어 엔진 ---
+        function toggleDarkMode() {
+            playPopSound();
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            updateDarkModeUI();
+        }
+
+        function updateDarkModeUI() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const toggleBtn = document.getElementById('dark-mode-toggle');
+            if (isDark) {
+                toggleBtn.innerText = '☀️';
+                showToast('🌙', '다크 테마가 활성화되었습니다.');
+            } else {
+                toggleBtn.innerText = '🌙';
+                showToast('☀️', '라이트 테마가 활성화되었습니다.');
+            }
+        }
+
+        // --- 4. 스크롤 진행률 인디케이터 계산 ---
+        window.addEventListener('scroll', () => {
+            const progress = document.getElementById('scroll-progress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progress.style.width = scrollPercent + '%';
+        });
+
+        // --- 5. 커스텀 마우스 커서 트래킹 엔진 ---
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('custom-cursor-dot');
+        const donutSvg = document.getElementById('donut-svg');
+
+        document.addEventListener('mousemove', (e) => {
+            // translate3d 하드웨어 가속을 이용해 부드러운 위치 추적 구현
+            // 도넛과 크럼블(별)의 시간 딜레이를 나누어 크럼블이 쫀득하게 쫓아오는 효과 연출
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+            cursorDot.style.transform = `translate3d(${e.clientX + 12}px, ${e.clientY + 12}px, 0) translate(-50%, -50%)`;
+        });
+
+        // 인터랙티브 요소 접근 시 커서 피드백 (도넛 스케일 업 및 회전 모션)
+        const handleInteractiveCursor = () => {
+            const items = document.querySelectorAll('a, button, select, input, textarea');
+            items.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    donutSvg.classList.add('scale-150', 'rotate-[180deg]');
+                    cursorDot.classList.add('scale-150', 'translate-x-1', 'translate-y-1');
+                });
+                item.addEventListener('mouseleave', () => {
+                    donutSvg.classList.remove('scale-150', 'rotate-[180deg]');
+                    cursorDot.classList.remove('scale-150', 'translate-x-1', 'translate-y-1');
+                });
+            });
+        };
+
+        // --- 6. 은은한 배경 파티클 모션 그래픽스 (Canvas 기반) ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1; // 1px ~ 4px 크기 조절
+                this.speedY = -(Math.random() * 0.4 + 0.1); // 서서히 위로 흐르게 연출
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.opacity = Math.random() * 0.5 + 0.15;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                
+                // 화면 밖으로 탈출 시 리스폰 처리
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+                if (this.x < 0 || this.x > canvas.width) {
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                const isDark = document.documentElement.classList.contains('dark');
+                // 다크모드에서는 밝은 전구방울처럼 노란색, 라이트모드에서는 포근한 갈색빛 파티클
+                ctx.fillStyle = isDark 
+                    ? `rgba(255, 232, 148, ${this.opacity * 0.6})` 
+                    : `rgba(74, 54, 41, ${this.opacity * 0.25})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(45, Math.floor(window.innerWidth / 30)); // 기기별 해상도에 맞춰 자동 최적화
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        // --- 7. 나의 핵심 가치 탭 전환 ---
+        function selectValue(valueKey) {
+            playPopSound();
+            const keys = ['growth', 'responsibility', 'positivity'];
+            keys.forEach(k => {
+                const btn = document.getElementById(`btn-${k}`);
+                const content = document.getElementById(`content-${k}`);
+                if (k === valueKey) {
+                    btn.classList.add('bg-banana');
+                    btn.classList.remove('bg-white', 'dark:bg-darkBg-card', 'hover:bg-banana/10');
+                    content.classList.remove('hidden');
+                } else {
+                    btn.classList.add('bg-white', 'dark:bg-darkBg-card', 'hover:bg-banana/10');
+                    btn.classList.remove('bg-banana');
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // --- 8. 경험 슬라이더 컨트롤러 ---
+        let currentExpIdx = 0;
+        const totalCards = 3;
+
+        function updateSlider() {
+            const slider = document.getElementById('experience-slider');
+            const offset = -currentExpIdx * 100;
+            slider.style.transform = `translateX(${offset}%)`;
+            for (let i = 0; i < totalCards; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (i === currentExpIdx) {
+                    dot.classList.add('bg-cocoa', 'dark:bg-banana');
+                    dot.classList.remove('bg-cocoa/20');
+                } else {
+                    dot.classList.remove('bg-cocoa', 'dark:bg-banana');
+                    dot.classList.add('bg-cocoa/20');
+                }
+            }
+        }
+
+        function prevExp() {
+            playPopSound();
+            currentExpIdx = (currentExpIdx === 0) ? totalCards - 1 : currentExpIdx - 1;
+            updateSlider();
+        }
+
+        function nextExp() {
+            playPopSound();
+            currentExpIdx = (currentExpIdx === totalCards - 1) ? 0 : currentExpIdx + 1;
+            updateSlider();
+        }
+
+        function goToExp(idx) {
+            playPopSound();
+            currentExpIdx = idx;
+            updateSlider();
+        }
+
+        // --- 9. 폭풍 리액션 보드 시스템 ---
+        const reactionKeys = ['fighting', 'coffee', 'collab', 'fun'];
+        const reactionsDefault = { fighting: 42, coffee: 28, collab: 19, fun: 51 };
+
+        function initReactions() {
+            reactionKeys.forEach(key => {
+                const storedVal = localStorage.getItem(`react-${key}`);
+                document.getElementById(`react-${key}-count`).textContent = storedVal ? parseInt(storedVal) : reactionsDefault[key];
+            });
+        }
+
+        function sendReaction(key) {
+            playPopSound();
+            const counterElement = document.getElementById(`react-${key}-count`);
+            let count = parseInt(counterElement.textContent) + 1;
+            counterElement.textContent = count;
+            localStorage.setItem(`react-${key}`, count);
+            showToast('💖', '소중한 리액션이 전달되었습니다!');
+        }
+
+        function showToast(icon, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-icon').textContent = icon;
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 2500);
+        }
+
+        // --- 10. 러닝메이트 케미 테스트 (퀴즈 데이터 및 로직) ---
+        let currentQuizStep = 0;
+        let quizAnswers = [];
+        
+        const quizData = [
+            {
+                step: "QUESTION 1/3",
+                progress: "33%",
+                title: "코딩 중 에러가 도무지 풀리지 않을 때 나의 성향은?",
+                choiceA: "💻 에러와 1:1 단독 대결! 혼자 밤샘 구글링으로 정복한다.",
+                choiceB: "☕ 일단 근처 동료(원희)를 쿡 찌르고 커피 한잔하며 힌트를 찾는다."
+            },
+            {
+                step: "QUESTION 2/3",
+                progress: "66%",
+                title: "팀 프로젝트(팀플)를 시작할 때, 내가 더 선호하는 역할은?",
+                choiceA: "🎯 묵묵하고 진중하게 빌드해내는 기둥 같은 백엔드/핵심 개발!",
+                choiceB: "💡 아이디어를 내고 화면을 직접 꾸미며 사람들과 소통하는 역할!"
+            },
+            {
+                step: "QUESTION 3/3",
+                progress: "100%",
+                title: "스터디를 하거나 수업을 들을 때 나는 어떤 분위기가 좋나요?",
+                choiceA: "📐 정해진 템플릿과 타임라인대로 깔끔하게 돌아가는 초집중 분위기!",
+                choiceB: "🎉 질문도 드립도 편안하게 오가는, 리액션 가득 유쾌한 분위기!"
+            }
+        ];
+
+        function startQuiz() {
+            playPopSound();
+            currentQuizStep = 0;
+            quizAnswers = [];
+            
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-question-container').classList.remove('hidden');
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = quizData[currentQuizStep];
+            document.getElementById('quiz-step').textContent = q.step;
+            document.getElementById('quiz-progress').style.width = q.progress;
+            document.getElementById('quiz-title').textContent = q.title;
+            document.getElementById('btn-choice-a').textContent = q.choiceA;
+            document.getElementById('btn-choice-b').textContent = q.choiceB;
+        }
+
+        function submitAnswer(choice) {
+            playPopSound();
+            quizAnswers.push(choice);
+            
+            if (currentQuizStep < quizData.length - 1) {
+                currentQuizStep++;
+                loadQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-question-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            
+            const countA = quizAnswers.filter(ans => ans === 'A').length;
+            const countB = quizAnswers.filter(ans => ans === 'B').length;
+            
+            const rEmoji = document.getElementById('result-emoji');
+            const rTag = document.getElementById('result-tag');
+            const rTitle = document.getElementById('result-title');
+            const rDesc = document.getElementById('result-desc');
+
+            if (countB >= 2) {
+                rEmoji.textContent = "🥳";
+                rTag.textContent = "찰떡 페이스메이커 (100%)";
+                rTitle.textContent = "우리는 자바반 공식 유쾌한 러너단!";
+                rDesc.textContent = "의견을 던지는 족족 원희님의 폭풍 리액션이 매치될 최고의 궁합입니다. 지칠 틈 없이 깔깔 웃으며 끝까지 기분 좋게 완주할 천생연분 조원이에요!";
+            } else if (countA >= 2 && countB === 1) {
+                rEmoji.textContent = "📐";
+                rTag.textContent = "상호보완 시너지형 (80%)";
+                rTitle.textContent = "서로의 빈틈을 완벽히 채워줄 페어!";
+                rDesc.textContent = "혼자 집중하는 완벽주의 성향의 당신과, 유연하게 분위기를 환기해 줄 원희님이 만나면 막강한 밸런스가 탄생합니다. 서로가 서로의 페이스 메이커가 되기에 최적!";
+            } else {
+                rEmoji.textContent = "💻";
+                rTag.textContent = "든든한 기술 서포터 (60%)";
+                rTitle.textContent = "코드 막힐 때 찾는 커피메이트";
+                rDesc.textContent = "묵묵히 앞길을 뚫는 든든한 등대 같은 당신! 지쳐서 과열될 때 원희님과 가볍게 커피 수혈 한 잔 하며 리프레시하기에 제격인 소중한 메이트입니다.";
+            }
+            
+            showToast('🧪', '케미 테스트 진단이 완료되었습니다!');
+        }
+
+        function resetQuiz() {
+            playPopSound();
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-intro').classList.remove('hidden');
+        }
+
+        // --- 11. 통합 초기화 설정 ---
+        window.onload = function() {
+            handleRouting();
+            initReactions();
+            
+            // 다크모드 아이콘 동기화
+            const isDark = document.documentElement.classList.contains('dark');
+            document.getElementById('dark-mode-toggle').innerText = isDark ? '☀️' : '🌙';
+
+            // 마이크로 인터랙션용 노출 및 스케일 바인딩
+            handleInteractiveCursor();
+            
+            // 파티클 생성 및 가동
+            initParticles();
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
