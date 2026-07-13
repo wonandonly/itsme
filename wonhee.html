@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>러닝메이트 김원희 | 러닝 토크</title>
+    <title>러닝메이트 김원희 | 포트폴리오</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -40,7 +40,6 @@
     </script>
     
     <style>
-        /* 커스텀 테마 폰트 적용 */
         body {
             background-color: #FCFBF7;
             color: #4A3629;
@@ -48,7 +47,6 @@
             overflow-x: hidden;
         }
         
-        /* 통통 튀는 유쾌한 느낌을 주는 바운스 애니메이션 */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -69,10 +67,9 @@
 </head>
 <body class="selection:bg-banana selection:text-cocoa min-h-screen flex flex-col">
 
-    <!-- [공통] 네비게이션 바 컴포넌트 (모바일에서도 항상 드러나는 홈/경험/방명록) -->
+    <!-- [공통] 네비게이션 바 컴포넌트 -->
     <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-cocoa/5 px-4 sm:px-6 py-4 transition-all duration-300">
         <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
-            <!-- 로고 -->
             <a href="#home" class="flex items-center gap-2 group shrink-0">
                 <div class="w-8 h-8 rounded-full bg-banana flex items-center justify-center font-bold text-cocoa group-hover:rotate-12 transition-transform duration-300">
                     🍌
@@ -80,15 +77,14 @@
                 <span class="font-cute text-xl sm:text-2xl font-bold tracking-wide text-cocoa">Wonhee.Run</span>
             </a>
             
-            <!-- 네비게이션 링크: 절대 숨겨지지 않고 항상 나열되는 구조 유지 -->
             <nav class="flex items-center gap-4 sm:gap-8 font-medium text-cocoa/80 text-xs sm:text-sm" id="global-nav">
                 <a href="#home" data-nav="home" class="nav-item hover:text-cocoa transition-colors">홈</a>
                 <a href="#experience" data-nav="experience" class="nav-item hover:text-cocoa transition-colors">경험</a>
-                <a href="#guestbook" data-nav="guestbook" class="nav-item hover:text-cocoa transition-colors">방명록</a>
+                <a href="#chemistry" data-nav="chemistry" class="nav-item hover:text-cocoa transition-colors">케미 테스트</a>
             </nav>
             
-            <a href="#guestbook" class="px-3 py-1.5 sm:px-5 sm:py-2 rounded-full bg-banana text-cocoa font-bold text-[10px] sm:text-sm border-2 border-cocoa shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(74,54,41,1)] transition-all shrink-0">
-                말 걸기 💬
+            <a href="#chemistry" class="px-3 py-1.5 sm:px-5 sm:py-2 rounded-full bg-banana text-cocoa font-bold text-[10px] sm:text-sm border-2 border-cocoa shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(74,54,41,1)] transition-all shrink-0">
+                테스트 하기 🧪
             </a>
         </div>
     </header>
@@ -156,8 +152,8 @@
                         <a href="#experience" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-banana text-cocoa font-bold text-lg border-2 border-cocoa shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
                             경험 구경가기 👀
                         </a>
-                        <a href="#guestbook" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-cocoa font-bold text-lg border-2 border-cocoa shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
-                            방명록 작성하기 ✏️
+                        <a href="#chemistry" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-cocoa font-bold text-lg border-2 border-cocoa shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
+                            러닝메이트 케미 테스트 🧪
                         </a>
                     </div>
                 </div>
@@ -214,22 +210,21 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- 기존 .card-hover 클래스를 Tailwind의 transition, hover 유틸리티로 완벽 전환 -->
-                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 cubic-bezier(0.175,0.885,0.32,1.275) hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
+                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">💪</div>
                             <h4 class="text-xl font-bold text-cocoa mb-3">함께 성장하는 페이스메이커</h4>
                             <p class="text-cocoa/80 text-sm">혼자만 지식을 독점하는 것보다 아는 것을 나누는 생태계를 추구합니다.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 cubic-bezier(0.175,0.885,0.32,1.275) hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
+                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">🎯</div>
                             <h4 class="text-xl font-bold text-cocoa mb-3">책임감 있는 팀플레이어</h4>
                             <p class="text-cocoa/80 text-sm">프로젝트 일정을 잘 지키고 소외되는 팀원이 없도록 살뜰하게 챙깁니다.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 cubic-bezier(0.175,0.885,0.32,1.275) hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
+                    <div class="bg-white rounded-3xl border-2 border-cocoa p-8 shadow-[4px_4px_0px_0px_rgba(74,54,41,1)] flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_30px_rgba(74,54,41,0.08)]">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-banana flex items-center justify-center text-3xl mb-6 border-2 border-cocoa">💡</div>
                             <h4 class="text-xl font-bold text-cocoa mb-3">에너지를 불어넣는 분위기 메이커</h4>
@@ -326,10 +321,10 @@
                                     <div class="md:w-2/3 p-8 flex flex-col justify-between">
                                         <ul class="space-y-4 text-cocoa/85">
                                             <li class="flex items-start gap-2"><span>✔</span> <span>대학 연합 해커톤 운영 및 타임라인 설계 조력.</span></li>
-                                            <li class="flex items-start gap-2"><span>✔</span> <span>기획 및 현장 운영 스태프로 활동.</span></li>
+                                            <li class="flex items-start gap-2"><span>✔</span> <span>의견 조율 단계에서 최적의 중간 지점 조율안 제시.</span></li>
                                         </ul>
                                         <div class="mt-6 p-4 rounded-xl bg-cream text-xs text-cocoa/70 border border-cocoa/10 font-medium">
-                                            💡 <strong>이 경험에서 배운 것:</strong> 예상치 못한 상황은 언제든 발생할 수 있기 때문에, 빠르게 우선순위를 정하고 유연하게 대응하는 자세가 운영의 핵심이라는 것을 배웠습니다.
+                                            💡 <strong>이 경험에서 배운 것:</strong> 리스크는 미룰수록 커진다는 점! 팀원 간의 투명한 소통과 명확한 일정 관리가 팀워크를 살리는 비결임을 깨달았습니다.
                                         </div>
                                     </div>
                                 </div>
@@ -343,14 +338,12 @@
                                         </div>
                                         <span class="text-sm font-semibold text-cocoa-light mt-4">📅 2025</span>
                                     </div>
-
                                     <div class="md:w-2/3 p-8 flex flex-col justify-between">
                                         <ul class="space-y-4 text-cocoa/85">
                                             <li class="flex items-start gap-2"><span>✔</span> <span>팀 프로젝트에서 기획 및 개발을 담당.</span></li>
                                             <li class="flex items-start gap-2"><span>✔</span> <span>사용자 경험을 고려한 기능 설계와 구현을 함께 진행.</span></li>
                                             <li class="flex items-start gap-2"><span>✔</span> <span>프로젝트의 완성도를 인정받아 <strong>수상</strong>이라는 성과를 달성.</span></li>
                                         </ul>
-
                                         <div class="mt-6 p-4 rounded-xl bg-cream text-xs text-cocoa/70 border border-cocoa/10 font-medium">
                                             💡 <strong>이 경험에서 배운 것:</strong> 좋은 결과는 뛰어난 아이디어 하나보다, 팀원들과 끝까지 개선하고 완성도를 높이려는 과정에서 만들어진다는 것을 배웠습니다.
                                         </div>
@@ -360,6 +353,7 @@
                             </div>
                         </div>
 
+                        <!-- 슬라이더 도트 및 인디케이터 -->
                         <div class="flex justify-center gap-3 mt-8">
                             <button onclick="goToExp(0)" id="dot-0" class="w-3 h-3 rounded-full bg-cocoa transition-all duration-300"></button>
                             <button onclick="goToExp(1)" id="dot-1" class="w-3 h-3 rounded-full bg-cocoa/20 transition-all duration-300"></button>
@@ -370,58 +364,69 @@
             </section>
         </div>
 
-        <!-- ==================== PAGE 3: 러닝 토크 (Guestbook) ==================== -->
-        <div id="page-guestbook" class="transition-all duration-300 ease-in-out opacity-0 scale-95 hidden">
-            <section id="guestbook" class="py-24 px-6 bg-cream">
-                <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-                    <div class="lg:col-span-5 flex flex-col justify-center">
-                        <span class="font-cute text-2xl text-cocoa-light font-bold">LET'S TALK</span>
-                        <h3 class="text-3xl md:text-4xl font-bold mt-2 mb-6">우리 함께 달려요!</h3>
-                        <p class="text-cocoa/80 leading-relaxed mb-8">
-                            궁금한 점이 있거나, 밥 한 끼 같이 먹고 싶다면 방명록에 흔적을 남겨주세요!
+        <!-- ==================== PAGE 3: 케미 테스트 (Chemistry Test) ==================== -->
+        <div id="page-chemistry" class="transition-all duration-300 ease-in-out opacity-0 scale-95 hidden">
+            <section id="chemistry" class="py-24 px-6 bg-cream flex items-center justify-center min-h-[80vh]">
+                <div class="max-w-2xl w-full mx-auto bg-white border-2 border-cocoa rounded-3xl p-8 md:p-12 shadow-[6px_6px_0px_0px_rgba(74,54,41,1)] text-center relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-banana/30 rounded-full"></div>
+                    
+                    <!-- [1] 시작 화면 -->
+                    <div id="quiz-intro" class="block space-y-6">
+                        <span class="text-5xl">🧪</span>
+                        <h3 class="font-cute text-2xl font-bold text-cocoa-light">나와 원희의 러닝메이트 등급은?</h3>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-cocoa leading-tight">코드 취향 & 협업 케미 테스트</h2>
+                        <p class="text-cocoa/80 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+                            재미로 알아보는 성향 대조 표! 몇 가지만 선택하면 나와 원희님의 페이스메이커 싱크로율을 진단해 드려요. 🏃‍♂️💨
                         </p>
-                    </div>
-
-                    <div class="lg:col-span-7">
-                        <div class="bg-white border-2 border-cocoa rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_0px_rgba(74,54,41,1)]">
-                            <h4 class="text-xl font-bold mb-6 flex items-center gap-2"><span>✏</span> 방명록 작성하기</h4>
-                            <form id="comment-form" onsubmit="addComment(event)" class="space-y-4">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-xs font-bold text-cocoa/80 mb-2">이름 또는 닉네임</label>
-                                        <input type="text" id="author" required placeholder="예) 자바요정" class="w-full px-4 py-3 rounded-xl border-2 border-cocoa/20 focus:border-banana focus:ring-0 focus:outline-none text-sm">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-cocoa/80 mb-2">어울리는 태그</label>
-                                        <select id="tag" class="w-full px-4 py-3 rounded-xl border-2 border-cocoa/20 focus:border-banana focus:ring-0 focus:outline-none text-sm">
-                                            <option value="👋 인사해요">👋 인사해요</option>
-                                            <option value="🔥 팀플 같이해요">🔥 팀플 같이해요</option>
-                                            <option value="☕ 커피 한잔?">☕ 커피 한잔?</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-cocoa/80 mb-2">남기고 싶은 한마디</label>
-                                    <textarea id="comment-text" required rows="3" placeholder="내용을 적어주세요!" class="w-full px-4 py-3 rounded-xl border-2 border-cocoa/20 focus:border-banana text-sm"></textarea>
-                                </div>
-                                <button type="submit" class="w-full py-4 rounded-xl bg-banana hover:bg-banana-dark text-cocoa font-bold text-sm border-2 border-cocoa shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
-                                    메시지 부착하기 📌
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="max-w-5xl mx-auto">
-                    <h4 class="text-2xl font-bold text-cocoa mb-8 flex items-center gap-2 justify-center">
-                        <span>💛</span> 자바반 친구들의 한마디 보드
-                    </h4>
-                    <div id="comments-board" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
-                    <div class="text-center mt-12">
-                        <button onclick="clearComments()" class="text-xs text-cocoa/40 hover:text-cocoa underline underline-offset-2">
-                            방명록 전체 비우기 (초기 데이터 복원)
+                        <button onclick="startQuiz()" class="px-8 py-4 rounded-2xl bg-banana text-cocoa font-bold text-lg border-2 border-cocoa shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] transition-all">
+                            테스트 시작하기 🚀
                         </button>
                     </div>
+
+                    <!-- [2] 문제 풀이 화면 -->
+                    <div id="quiz-question-container" class="hidden space-y-8">
+                        <!-- 진행률 바 -->
+                        <div class="w-full bg-cream border border-cocoa/20 h-3 rounded-full overflow-hidden">
+                            <div id="quiz-progress" class="bg-banana h-full transition-all duration-300" style="width: 33%"></div>
+                        </div>
+                        <span id="quiz-step" class="inline-block px-3 py-1 bg-banana-light border border-banana rounded-full text-xs font-bold text-cocoa-light font-english">QUESTION 1/3</span>
+                        
+                        <h3 id="quiz-title" class="text-2xl font-bold text-cocoa leading-snug">코딩 중 에러가 안 풀릴 때, 나의 행동은?</h3>
+                        
+                        <div class="space-y-4 pt-4">
+                            <button id="btn-choice-a" onclick="submitAnswer('A')" class="w-full p-5 rounded-2xl bg-cream-card hover:bg-banana text-cocoa font-bold text-left border-2 border-cocoa shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] transition-all">
+                                💻 에러와 1대1 단독 대결! 혼자 밤새며 해결한다.
+                            </button>
+                            <button id="btn-choice-b" onclick="submitAnswer('B')" class="w-full p-5 rounded-2xl bg-cream-card hover:bg-banana text-cocoa font-bold text-left border-2 border-cocoa shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] transition-all">
+                                ☕ 일단 옆 동료에게 힌트를 얻거나 함께 고민해 본다.
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- [3] 결과 화면 -->
+                    <div id="quiz-result" class="hidden space-y-6">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-banana-light border-2 border-cocoa flex items-center justify-center text-4xl animate-bounce" id="result-emoji">
+                            🤝
+                        </div>
+                        <h4 id="result-tag" class="font-cute text-2xl font-bold text-cocoa-light">찰떡궁합 100%</h4>
+                        <h2 id="result-title" class="text-3xl font-extrabold text-cocoa leading-snug">우리는 자바반 찰떡 페이스메이커!</h2>
+                        <p id="result-desc" class="text-cocoa/85 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+                            성향이 아주 딱 맞네요! 함께 공부하면 코딩 에너지가 배가 될 거예요. 코드 막힐 때 망설임 없이 물어보세요!
+                        </p>
+                        
+                        <div class="pt-6 border-t border-cocoa/10 flex flex-col gap-3">
+                            <p class="text-xs text-cocoa/50 font-medium">이 결과를 내일 원희님에게 슬쩍 스포해 주세요 🤫</p>
+                            <div class="flex justify-center gap-4">
+                                <button onclick="resetQuiz()" class="px-5 py-2.5 rounded-xl bg-white border border-cocoa text-xs font-bold shadow-sm hover:bg-cream-card">
+                                    다시 하기 🔄
+                                </button>
+                                <a href="#home" class="px-5 py-2.5 rounded-xl bg-banana border-2 border-cocoa text-xs font-bold shadow-[2px_2px_0px_0px_rgba(74,54,41,1)] hover:translate-y-0.5">
+                                    홈으로 가기 🏠
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -441,17 +446,17 @@
     <!-- 토스트 알림창 -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 bg-cocoa text-white px-6 py-3 rounded-xl border border-white/10 shadow-xl opacity-0 transform translate-y-4 pointer-events-none transition-all duration-300 flex items-center gap-2">
         <span id="toast-icon">✨</span>
-        <span id="toast-message" class="text-sm font-semibold">반응을 전송했습니다!</span>
+        <span id="toast-message" class="text-sm font-semibold">알림 메시지</span>
     </div>
 
     <script>
         // --- 1. 해시 라우터 탑재 (하나의 네브바로 페이지 제어) ---
         function handleRouting() {
             const hash = window.location.hash.replace('#', '') || 'home';
-            const validPages = ['home', 'experience', 'guestbook'];
+            const validPages = ['home', 'experience', 'chemistry'];
             const activePage = validPages.includes(hash) ? hash : 'home';
 
-            // 페이지 섹션 가시성 및 트랜지션 처리 (전부 Tailwind 클래스로 직접 컨트롤)
+            // 페이지 섹션 가시성 및 트랜지션 처리
             validPages.forEach(page => {
                 const pageEl = document.getElementById(`page-${page}`);
                 if (page === activePage) {
@@ -463,7 +468,7 @@
                 }
             });
 
-            // 네비게이션 액티브 메뉴 하이라이트 스타일 가변 제어
+            // 네비게이션 액티브 메뉴 하이라이트 스타일 제어
             document.querySelectorAll('#global-nav a').forEach(link => {
                 const href = link.getAttribute('href').replace('#', '');
                 if (href === activePage) {
@@ -586,85 +591,113 @@
             }, 2500);
         }
 
-        // --- 6. 실시간 로컬스토리지 방명록 시스템 ---
-        const defaultComments = [
-            { id: 1, author: "자바반", tag: "👋 인사해요", text: "안녕하세요!", date: "2026.07.08" },
-            { id: 2, author: "클래스메이트", tag: "🔥 팀플 같이해요", text: "반갑습니다", date: "2026.07.09" }
+        // --- 6. 러닝메이트 케미 테스트 (퀴즈 데이터 및 로직) ---
+        let currentQuizStep = 0;
+        let quizAnswers = [];
+        
+        const quizData = [
+            {
+                step: "QUESTION 1/3",
+                progress: "33%",
+                title: "코딩 중 에러가 도무지 풀리지 않을 때 나의 성향은?",
+                choiceA: "💻 에러와 1:1 단독 대결! 혼자 밤샘 구글링으로 정복한다.",
+                choiceB: "☕ 일단 근처 동료(원희)를 쿡 찌르고 커피 한잔하며 힌트를 찾는다."
+            },
+            {
+                step: "QUESTION 2/3",
+                progress: "66%",
+                title: "팀 프로젝트(팀플)를 시작할 때, 내가 더 선호하는 역할은?",
+                choiceA: "🎯 묵묵하고 진중하게 빌드해내는 기둥 같은 백엔드/핵심 개발!",
+                choiceB: "💡 아이디어를 내고 화면을 직접 꾸미며 사람들과 소통하는 역할!"
+            },
+            {
+                step: "QUESTION 3/3",
+                progress: "100%",
+                title: "스터디를 하거나 수업을 들을 때 나는 어떤 분위기가 좋나요?",
+                choiceA: "📐 정해진 템플릿과 타임라인대로 깔끔하게 돌아가는 초집중 분위기!",
+                choiceB: "🎉 질문도 드립도 편안하게 오가는, 리액션 가득 유쾌한 분위기!"
+            }
         ];
 
-        function getComments() {
-            const stored = localStorage.getItem('wonhee_comments');
-            if (stored) return JSON.parse(stored);
-            localStorage.setItem('wonhee_comments', JSON.stringify(defaultComments));
-            return defaultComments;
-        }
-
-        function renderComments() {
-            const comments = getComments();
-            const board = document.getElementById('comments-board');
-            if (!board) return;
-            board.innerHTML = '';
+        function startQuiz() {
+            playPopSound();
+            currentQuizStep = 0;
+            quizAnswers = [];
             
-            const stickyStyles = [
-                'bg-[#FFE894]/20 border-2 border-cocoa rotate-[0.5deg]',
-                'bg-[#FFE894]/15 border-2 border-cocoa rotate-[-1deg]',
-                'bg-white border-2 border-cocoa rotate-[1.5deg]',
-            ];
-            comments.slice().reverse().forEach((comment, index) => {
-                const style = stickyStyles[index % stickyStyles.length];
-                const cardHtml = `
-                    <div class="p-6 rounded-3xl ${style} shadow-[3px_3px_0px_0px_rgba(74,54,41,1)] relative">
-                        <div class="absolute -top-3 left-6 text-2xl select-none">📌</div>
-                        <div class="flex items-center justify-between mb-4 mt-2">
-                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-cocoa text-cream text-[10px]">${comment.tag}</span>
-                            <span class="text-[10px] font-semibold text-cocoa/40 font-english">${comment.date}</span>
-                        </div>
-                        <p class="text-cocoa/90 text-sm mb-6">"${comment.text}"</p>
-                        <div class="flex items-center justify-between pt-2 border-t border-cocoa/10">
-                            <span class="text-xs font-bold">From. ${comment.author}</span>
-                        </div>
-                    </div>
-                `;
-                board.innerHTML += cardHtml;
-            });
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-question-container').classList.remove('hidden');
+            
+            loadQuestion();
         }
 
-        function addComment(event) {
-            event.preventDefault();
-            playPopSound();
-            const authorInput = document.getElementById('author');
-            const tagInput = document.getElementById('tag');
-            const textInput = document.getElementById('comment-text');
-            const now = new Date();
-            const formattedDate = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
-            const newComment = {
-                id: Date.now(),
-                author: authorInput.value.trim(),
-                tag: tagInput.value,
-                text: textInput.value.trim(),
-                date: formattedDate
-            };
-            const comments = getComments();
-            comments.push(newComment);
-            localStorage.setItem('wonhee_comments', JSON.stringify(comments));
-            authorInput.value = '';
-            textInput.value = '';
-            renderComments();
-            showToast('✅', '방명록 메시지가 보드에 부착되었습니다!');
+        function loadQuestion() {
+            const q = quizData[currentQuizStep];
+            document.getElementById('quiz-step').textContent = q.step;
+            document.getElementById('quiz-progress').style.width = q.progress;
+            document.getElementById('quiz-title').textContent = q.title;
+            document.getElementById('btn-choice-a').textContent = q.choiceA;
+            document.getElementById('btn-choice-b').textContent = q.choiceB;
         }
 
-        function clearComments() {
+        function submitAnswer(choice) {
             playPopSound();
-            localStorage.removeItem('wonhee_comments');
-            renderComments();
-            showToast('🔄', '방명록 보드가 초기화되었습니다.');
+            quizAnswers.push(choice);
+            
+            if (currentQuizStep < quizData.length - 1) {
+                currentQuizStep++;
+                loadQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-question-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            
+            // 결과 알고리즘 (A와 B의 분포에 따라 달라지는 3가지 결과)
+            const countA = quizAnswers.filter(ans => ans === 'A').length;
+            const countB = quizAnswers.filter(ans => ans === 'B').length;
+            
+            const rEmoji = document.getElementById('result-emoji');
+            const rTag = document.getElementById('result-tag');
+            const rTitle = document.getElementById('result-title');
+            const rDesc = document.getElementById('result-desc');
+
+            if (countB >= 2) {
+                // 초긍정 사교형 결과 (B성향 다수)
+                rEmoji.textContent = "🥳";
+                rTag.textContent = "찰떡 페이스메이커 (100%)";
+                rTitle.textContent = "우리는 자바반 공식 유쾌한 러너단!";
+                rDesc.textContent = "의견을 던지는 족족 원희님의 폭풍 리액션이 매치될 최고의 궁합입니다. 지칠 틈 없이 깔깔 웃으며 끝까지 기분 좋게 완주할 천생연분 조원이에요!";
+            } else if (countA >= 2 && countB === 1) {
+                // 상호보완형 결과 (A성향 중심, 실속형)
+                rEmoji.textContent = "📐";
+                rTag.textContent = "상호보완 시너지형 (80%)";
+                rTitle.textContent = "서로의 빈틈을 완벽히 채워줄 페어!";
+                rDesc.textContent = "혼자 집중하는 완벽주의 성향의 당신과, 유연하게 분위기를 환기해 줄 원희님이 만나면 막강한 밸런스가 탄생합니다. 서로가 서로의 페이스 메이커가 되기에 최적!";
+            } else {
+                // 차분한 독고다이 성향 결과
+                rEmoji.textContent = "💻";
+                rTag.textContent = "든든한 기술 서포터 (70%)";
+                rTitle.textContent = "코드 막힐 때 찾는 커피메이트";
+                rDesc.textContent = "묵묵히 앞길을 뚫는 든든한 등대 같은 당신! 지쳐서 과열될 때 원희님과 가볍게 커피 수혈 한 잔 하며 리프레시하기에 제격인 소중한 메이트입니다.";
+            }
+            
+            showToast('🧪', '케미 테스트 진단이 완료되었습니다!');
+        }
+
+        function resetQuiz() {
+            playPopSound();
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-intro').classList.remove('hidden');
         }
 
         // --- 7. 통합 초기화 설정 ---
         window.onload = function() {
             handleRouting();
             initReactions();
-            renderComments();
         };
     </script>
 </body>
